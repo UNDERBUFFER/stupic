@@ -6,9 +6,11 @@ class Login {
         response.render("login.hbs");
     }
     static post(request, response) {
-        // filter
-        console.log(request.body)
-        response.render("login.hbs");
+        User.find({email: request.body.email}, (error, result) => {
+            if (error) console.log(error)
+            if (result.length > 0 && result[0].password === request.body.password) response.send("you are logged in")
+            else response.render("login.hbs");
+        })
     }
 }
 
