@@ -3,7 +3,7 @@ const User = require('../models/User')
 
 class Registration {
     static get(request, response) {
-        response.render("registration.hbs");
+        response.render("registration.hbs")
     }
     static post(request, response) {
         User.find({email: request.body.email}, (error, result) => {
@@ -15,7 +15,7 @@ class Registration {
                 if (error) console.log(error)
                 else response.send('are you registered!')
             })
-            else response.render("registration.hbs");
+            else response.render("registration.hbs")
         })
     }
 }

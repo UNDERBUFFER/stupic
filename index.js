@@ -1,15 +1,22 @@
 
 const AuthRouter = require('./routers/Auth')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 const express = require('express')
-const mongoose = require("mongoose");
+const MIDDLEWARES = require('./utils/middlewares')
+const mongoose = require("mongoose")
 
 const app = express()
 
+app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
-})); 
+}))
+
+for(let middleware of Object.keys(MIDDLEWARES)) {
+    app.use(MIDDLEWARES[middleware])
+}
 
 app.use('/auth', AuthRouter)
 
