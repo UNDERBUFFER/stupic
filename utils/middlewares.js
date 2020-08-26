@@ -5,6 +5,7 @@ function authorizationMiddleware(request, response, next) {
     try {
         const _id = request.cookies._id
         User.find({ _id }, (error, result) => {
+            if (error) console.log(error)
             if (result.length > 0) request.user = result[0]
             else request.user = null
             next()

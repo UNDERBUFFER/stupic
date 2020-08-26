@@ -7,6 +7,7 @@ class Registration {
     }
     static post(request, response) {
         User.find({email: request.body.email}, (error, result) => {
+            if (error) console.log(error)
             if (result.length == 0) (new User({
                 name: request.body.name,
                 email: request.body.email,
