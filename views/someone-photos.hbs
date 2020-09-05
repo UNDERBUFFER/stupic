@@ -7,6 +7,6 @@
 <body>
     <center>{{ user.name }}'s photos</center>
     {{#each photos}}
-        <img src="{{ this.path }}">
+        <b>{{ this.description }}:</b><img src="{{ this.path }}">
     {{/each}}
 </body>
