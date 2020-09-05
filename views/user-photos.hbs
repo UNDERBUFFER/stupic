@@ -7,7 +7,7 @@
 <body>
     <center>your photos</center>
     {{#each photos}}
-        {{ this }}
+        <img src="{{ this.path }}">
     {{/each}}
     <form method="POST" enctype="multipart/form-data">
         <input type='file' name='file'>

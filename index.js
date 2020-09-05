@@ -12,6 +12,7 @@ const app = express()
 
 app.use(cookieParser())
 app.use(fileUpload())
+app.use(express.static('static'));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true

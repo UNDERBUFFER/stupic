@@ -8,14 +8,17 @@ const servePhoto = require('../utils/photos')
 class Photo {
     static get(request, response) {
         const requestedUserPageById = request.params.id
-        if (request.user !== null && request.user._id == requestedUserPageById) response.render('user-photos.hbs', { user: request.user })
-        else {
-            User.find({ _id: requestedUserPageById}, (error, result) => {
-                if (error) console.log(error)
-                if ( isNotEmpty(result) ) response.render('someone-photos.hbs', { user: result[0] })
-                else response.render('404.hbs')
+        PhotoModel.find({ userId: requestedUserPageById }, (error, photos) => {
+            if (error) console.log(error)
+            if (request.user !== null && request.user._id == requestedUserPageById) response.render('user-photos.hbs', { user: request.user, photos })
+            else {
+                User.find({ _id: requestedUserPageById}, (error, result) => {
+                    if (error) console.log(error)
+                    if ( isNotEmpty(result) ) response.render('someone-photos.hbs', { user: result[0], photos })
+                    else response.render('404.hbs')
+                })
+            }
         })
-        }
     }
     static post(request, response) {
         const requestedUserPageById = request.params.id

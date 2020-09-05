@@ -6,8 +6,9 @@ function uuid() {
 }
 
 function servePhoto(requestPhoto) {
-	const url = `${process.cwd()}/photos/${uuid()}-${requestPhoto.name}`
-	fs.writeFileSync(url, requestPhoto.data)
+	const url = `/public/${uuid()}-${requestPhoto.name}`
+	const path = `${process.cwd()}/static${url}`
+	fs.writeFileSync(path, requestPhoto.data)
 	return url
 }
 
