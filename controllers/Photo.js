@@ -19,15 +19,18 @@ class Photo {
     }
     static post(request, response) {
         const requestedUserPageById = request.params.id
-        if (isNotEmpty(request.user) && request.user._id == requestedUserPageById) {
-            // + list photos
-            if (correctPhoto(request.body, request.files)) {
-                const url = servePhoto(request.files.file)
-            }
-            // new PhotoModel()
-            response.render('user-photos.hbs', { user: request.user })
+        if (isNotEmpty(request.user) && request.user._id == requestedUserPageById && correctPhoto(request.body, request.files)) {
+            const path = servePhoto(request.files.file)
+            new PhotoModel({
+                userId: request.user._id,
+                description: request.body.description,
+                coordinates: [0, 0],
+                path
+            }).save((error) => {
+                if (error) console.log(error)
+            })
         }
-        else Photo.get(request, response)
+        Photo.get(request, response)
     }
 }
 
