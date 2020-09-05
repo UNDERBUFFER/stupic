@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ user.name }}'s photos</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <center>{{ user.name }}'s photos</center>
+    {{#each photos}}
+        {{ this }}
+    {{/each}}
+</body>

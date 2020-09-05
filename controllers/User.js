@@ -4,7 +4,6 @@ const UserModel = require('../models/User')
 class User {
     static get(request, response) {
         const requestedUserPageById = request.params.id
-        console.log(requestedUserPageById, request.user._id)
         if (request.user !== null && request.user._id == requestedUserPageById) return response.render('user-page.hbs', { user: request.user })
         else {
             UserModel.find({ _id: requestedUserPageById }, (error, result) => {
