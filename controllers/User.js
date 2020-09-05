@@ -1,4 +1,5 @@
 
+const { isNotEmpty } = require('../utils/filters')
 const UserModel = require('../models/User')
 
 class User {
@@ -8,7 +9,7 @@ class User {
         else {
             UserModel.find({ _id: requestedUserPageById }, (error, result) => {
                 if (error) console.log(error)
-                if (result !== undefined) response.render('someone-page.hbs', { user: result[0] })
+                if ( isNotEmpty(result) ) response.render('someone-page.hbs', { user: result[0] })
                 else response.render('404.hbs')
             })
         }
