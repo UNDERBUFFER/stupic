@@ -2,6 +2,7 @@
 const fs = require('fs')
 const User = require('../models/User')
 const { login } = require('../utils/auth')
+const { registration } = require('../utils/filters')
 
 class Registration {
     static get(request, response) {
@@ -10,7 +11,7 @@ class Registration {
     static post(request, response) {
         User.find({email: request.body.email}, (error, result) => {
             if (error) console.log(error)
-            if (result.length == 0) {
+            if (result.length == 0 && registration(request.body)) {
                 let _id = "1"
                 try {
                     _id = String(Number(fs.readFileSync('COUNTER.txt', 'utf8')) + 1)

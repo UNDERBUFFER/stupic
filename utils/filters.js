@@ -4,11 +4,17 @@ const User = require("../models/User")
 function registration(body) {
     let result = []
     result.push(
-        ...Object.keys(body).map(key => ['name', 'email', 'password'].includes(key)),
+        ...['name', 'email', 'password'].map(key => Object.keys(body).includes(key)),
         ...Object.keys(body).map(key => !(body[key] === ''))
     )
     // result.push(body.password >= 8)
     // result.push((await User.find({email: body.email})) == [])
+    console.log(
+        Object.keys(body),
+        Object.keys(body).map(key => ['name', 'email', 'password'].includes(key)),
+        Object.keys(body).map(key => body[key]),
+        Object.keys(body).map(key => !(body[key] === ''))
+    )
     return all(result)
 }
 
