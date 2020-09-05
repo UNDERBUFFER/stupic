@@ -20,7 +20,7 @@ function loggingMiddleware(request, response, next) {
         method: request.method.toUpperCase(),
         url: request.originalUrl,
         status: response.statusCode,
-        user: request.user.email
+        user: request.user === null ? null : request.user.email
     })
     next()
 }
