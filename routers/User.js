@@ -7,5 +7,6 @@ const Router = express.Router()
 
 Router.get('/:id', User.get)
 Router.get('/:id/photos', Photo.get)
+Router.post('/:id/photos', Photo.post)
 
 module.exports = Router

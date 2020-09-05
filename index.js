@@ -3,6 +3,7 @@ const AuthRouter = require('./routers/Auth')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const express = require('express')
+const fileUpload = require('express-fileupload')
 const MIDDLEWARES = require('./utils/middlewares')
 const mongoose = require("mongoose")
 const UserRouter = require('./routers/User')
@@ -10,6 +11,7 @@ const UserRouter = require('./routers/User')
 const app = express()
 
 app.use(cookieParser())
+app.use(fileUpload())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
