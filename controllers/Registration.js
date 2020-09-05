@@ -32,7 +32,7 @@ class Registration {
                     }
                 })
             }
-            else response.render("registration.hbs")
+            else Registration.get()
         })
     }
 }

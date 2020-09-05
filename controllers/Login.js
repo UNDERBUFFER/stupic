@@ -8,7 +8,7 @@ class Login {
     }
     static post(request, response) {
         authenticate(request.body.email, request.body.password).then(user => {
-            if (user === null) response.render("login.hbs")
+            if (user === null) Login.get()
             else {
                 login(request, response, user)
                 response.send("you are logged in")
